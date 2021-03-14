@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Connect Remote · PHP Miami</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../res/icon.jpg">
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+      *{
+      	margin:6px;
+      	padding:6px;
+      }
+      body{
+      	overflow:auto;
+      	text-align:center;
+      }
+      img{
+      	vertical-align:middle;
+      }
+      div.si{
+      	border:2px solid var(--color44);
+      	background:var(--aux1);
+      }
+      div.si p{text-align: center;}
+      div.si img{
+        margin-bottom: 1em;
+      }
+      a{
+      	margin:0px;
+      }
+      ol{
+        text-align: left;
+        width: fit-content;
+        margin:0 auto;
+      }
+      ul li{list-style-position: inside;}
+      li *:not(tt){
+        padding:  0;
+      }
+      b,i{margin: 0 0.5ch;padding:0;}
+      tt{margin: 0 0.5ch;}
+      tt *{margin:0;padding: 0;}
+    </style>
+  </head>
+  <body>
+    <h1>How to connect to a remote host</h1>
+    <div class="si">
+      <p>It should be as simple as:</p>
+      <img src="img/cr000.png" alt="">
+
+      <br>
+
+      <p><b>But it's not like that.</b> You will get an error like this: </p>
+      <img src="img/cr003.png" alt="" style="border:1px dotted black;">
+
+      <p>For security reasons, the <tt>destination site</tt> must give the <tt>origin site</tt> permission to connect to its databases.</p>
+
+      <br>
+
+      <p>To do this, in the <tt>destination site</tt> the administrator must add a remote host to the SQL access as shown in the following images:</p>
+      <img src="img/cr001.png" alt="">
+      <img src="img/cr002.png" alt="">
+    </div>
+    <div class="si">
+      <p><b style="color:red;">Important</b>: You cannot add <tt>localhost</tt> as a remote host, because for the <tt>destination site</tt>, <b>localhost is itself!</b></p>
+      <p>If you've downloaded <i>phpmiami</i> to use it from your machine as <tt>localhost</tt>, I'm afraid you can't access a remote site (at least that I know of).</p>
+    </div>
+    <div class="si">
+      <p>
+        If you want to manage your server's database with<i>phpmiami</i> there are two options:
+        <ol>
+          <li><br>
+            Download <i>phpmiami</i> and include it as one more page.
+            <br>
+            In this way you can access by:
+            <ul>
+              <li><tt>mysite.com/phpmiami</tt></li>
+              <li>HOST:&ensp; mysite.com</li>
+            </ul>
+            <br>
+            If you have enabled <tt><span style="color:red;">$LOCALHOST</span> = <span style="color:orange;">true</span></tt> in <tt>phpmiami/php/100.php</tt>,<br> you can use <b>localhost</b> as HOST.
+          </li>
+          <li><br>
+            Using the version of <i>phpmiami</i> hosted on <i>retronomicon.gq</i>.
+            <br>
+            In this way you can access by:
+            <ul>
+              <li><tt>retronomicon.gq/phpmiami</tt></li>
+              <li>HOST:&ensp; mysite.com</li>
+            </ul>
+            <br>
+            To use this method you will have to<br>
+            ensure remote access to <i>retronomicon.gq</i> from <i>misite.com</i>.
+          </li>
+        </ol>
+      </p>
+    </div>
+
+    <br/><br/>
+    <img style="margin-top:-16px;" src="../res/banner.jpg" alt="">
+    <br/>
+  </body>
+</html>

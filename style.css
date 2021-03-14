@@ -1,0 +1,177 @@
+:root{
+  /*
+   * Beach Palletes
+   * from: https://www.w3schools.com/colors/colors_palettes.asp
+   */
+  --color1:#588c7e;
+  --color2:#f2e394;
+  --color3:#f2ae72;
+  --color4:#d96459;
+
+  --color11:#96ceb4;
+  --color22:#ffeead;
+  --color33:#ffcc5c;
+  --color44:#ff6f69;
+
+  --aux1:#FFF;
+  --aux2:#000;
+  --aux11:#CCC;
+  --aux22:#666;
+  --aux3:#FF0000;
+  --aux4:#0000FF;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("res/roboto.ttf");
+  /* https://fonts.google.com/specimen/Roboto */
+}
+@font-face {
+  font-family: 'Martel';
+  src: url("res/martel.ttf");
+  /* https://fonts.google.com/specimen/Martel */
+}
+
+*{
+  margin:0;
+  padding:0;
+  max-width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color:var(--aux2);
+}
+img{
+  vertical-align: middle;
+  /* this is so that the images cannot be dragged */
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+body{
+  background-color:var(--color22);
+  font-family: 'Martel', serif;
+  font-size:14px;
+  scroll-behavior: smooth;
+}
+h1{font-size: 2em;}
+p{text-align: justify;}
+tt{
+  font-family: 'Roboto',monospace;
+  padding: 3px 6px;
+  background-color:rgba(0,0,0,0.05);
+  border-radius: 3px;
+}
+
+.center{text-align: center;}
+.mono{font-family: 'Roboto',monospace;}
+input{
+  font-family: sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+input[type="text"],input[type="password"]{
+  padding:3px;
+}
+.button{
+  font-family: sans-serif;
+  padding:6px 12px;
+  cursor:pointer;
+}
+.tip{
+  border-bottom: 1px dotted var(--aux2);
+  font-family: monospace;
+}
+
+#top{height:32px;}
+#topbar{
+  position: fixed;
+  top: 0;left: 0;
+  width: 100%;
+  height:32px;
+  background: var(--color1);
+  overflow: hidden;
+  user-select: none;
+}
+#topbar * {
+  cursor: pointer;
+  color:var(--aux1);
+  max-height: 100%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+#topbar span{
+  cursor: text;
+  font-family: monospace;
+  margin-right: 12px;
+  user-select: text;
+}
+#topbar hr{
+  display:inline;
+  margin-right: 12px;
+}
+
+#main{
+  position: fixed;
+  top: 32px;left: 0;
+
+  width:100vw;
+  height:calc(100vh - 32px);
+  padding:32px;
+  box-sizing: border-box;
+
+  overflow-y: scroll;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.card{
+  background-color: var(--color44);
+  box-shadow: 0 9px 20px 0px #000;
+  margin:16px;
+}
+.card table{
+  width:100%;
+  padding: 32px;
+}
+.card table td{
+  vertical-align: top;
+}
+.card table tr td:first-child{font-weight: bold;width: 64px;}
+.card table td textarea{
+  min-width:256px;
+  min-height:128px;
+  border:1px solid var(--aux2);
+  padding:6px;
+  font-family: monospace;
+  font-size: 12px;
+  overflow: auto;
+}
+.result_query{display: none;}
+.result_query td{padding-top:32px;}
+
+/* Restore defaults for supertable */
+.result_query .supertable,.result_query .supertable *,.result_query .supertable td:first-child{
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  vertical-align: initial;
+  min-width: revert;
+  text-align: center;
+  width: initial;
+}
+
+.result_query .supertable th{
+  font-weight: bold;
+}
+.result_query .supertable, .result_query p{margin:12px;}
+.result_query .supertable{
+  border: 1px solid var(--aux2);
+  background-color: var(--aux1);
+}
+.result_query .supertable th,.result_query .supertable td {
+  border: 1px solid var(--aux2);
+  padding:6px 12px;
+}

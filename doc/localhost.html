@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Localhost · PHP Miami</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../res/icon.jpg">
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+      *{
+      	margin:6px;
+      	padding:6px;
+      }
+      body{
+      	overflow:auto;
+      	text-align:center;
+      }
+      img{
+      	vertical-align:middle;
+      }
+      div.si{
+      	border:2px solid var(--color44);
+      	background:var(--aux1);
+      }
+      div.si p{text-align: center;}
+      div.si img{
+        margin-bottom: 1em;
+      }
+      a{
+      	margin:0px;
+      }
+      ol,ul{
+        text-align: left;
+        width: fit-content;
+        margin:0 auto;
+      }
+      ul li{list-style-position: inside;}
+      li *:not(tt){
+        padding:  0;
+      }
+      b,i{margin: 0 0.5ch;padding:0;}
+      tt{margin: 0 0.5ch;}
+      tt *{margin:0;padding: 0;}
+    </style>
+  </head>
+  <body>
+    <h1>How to use <i>phpmiami</i> with localhost</h1>
+    <div class="si">
+      <ul>
+        <h2>Select a tutorial</h2>
+        <li><a href="#short">Short, for experienced users.</a></li>
+        <li><a href="#long">Long and detailed, for the inexperienced users.</a></li>
+      </ul>
+    </div>
+    <br>
+    <div class="si" id="short">
+      <h2>Short &ensp; tutorial</h2>
+      <br>
+      <ul>
+        First at all, you will need a <tt>localhost</tt> server with PHP and MySQL, like <a target="_blank" href="https://www.apachefriends.org/download.html">xampp</a>.
+        <li>Download <a target="_blank" href="https://github.com/bruneo32/phpmiami">phpmiami from github</a> and unzip it in <tt>...\xampp\htdocs\phpmiami</tt> (or equivalent directory).</li>
+        <li>Start XAMPP (or equivalent). Make sure <b>Apache</b> and <b>MySQL</b> are running.</li>
+        <li>Now open your internet web browser, and look for <tt>localhost/phpmiami</tt>.</li>
+      </ul>
+    </div>
+    <br>
+    <div class="si" id="long">
+      <h2>Long &ensp; tutorial</h2>
+      <h1>Install XAMPP</h1>
+      <ul>
+        <li>Install &nbsp;<a target="_blank" href="https://www.apachefriends.org/download.html">XAMPP</a>&nbsp; in <tt>C:\xampp</tt> (or equivalent in Linux or MAC).</li>
+        <li>Open <b>xampp-control.exe</b>, and start <b>Apache</b> and <b>MySQL</b>.</li>
+        <img src="img/lh000.png" alt="">
+      </ul>
+    </div>
+    <div class="si">
+      <h1>Install PHPMIAMI</h1>
+      <ul>
+        <li>Open <a target="_blank" href="https://github.com/bruneo32/phpmiami">phpmiami on github</a> and download ZIP.</li>
+        <img src="img/lh001.png" alt="">
+        <li>Move it to <tt>C:\xampp\htdocs</tt></li>
+        <img style="max-width:640px;" src="img/lh002.png" alt="">
+        <li>Right click <tt>phpmiami-main.zip</tt> and select <b>extract here</b>.<br>Then rename the folder to <b>phpmiami</b>.</li>
+        <img src="img/lh003.png" alt="">
+        <li>Now you can delete <b>phpmiami-main.zip</b></li>
+      </ul>
+    </div>
+    <div class="si">
+      <h1>Running</h1>
+      <ul>
+        <li>Open your favorite web browser.</li>
+        <li>Search <tt>localhost/phpmiami</tt>.</li>
+        <img style="max-width:640px;" src="img/lh004.png" alt="">
+      </ul>
+    </div>
+
+    <br/><br/>
+    <img style="margin-top:-16px;" src="../res/banner.jpg" alt="">
+    <br/>
+  </body>
+</html>
