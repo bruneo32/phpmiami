@@ -17,6 +17,5 @@ You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.
 <br><hr>
 <p align="center">
   <a target="_blank" href="https://www.retronomicon.gq/phpmiami"><img src="/res/banner.jpg" alt=""></a> &ensp; 
-  <a target="_blank" href="https://codemirror.net"><img src="/res/codemirror.png" alt=""></a> &ensp; 
-  <a target="_blank" href="https://www.apachefriends.org/download.html"><img height="106" src="/res/xampp.png" alt=""></a>
+  <a target="_blank" href="https://codemirror.net"><img src="/res/codemirror.png" alt=""></a>
 </p>
