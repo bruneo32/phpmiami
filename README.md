@@ -15,4 +15,8 @@ You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.
 
 
 <br><hr>
-<p align="center"><img src="/res/banner.jpg" alt=""></p>
+<p align="center">
+  <img src="/res/banner.jpg" alt=""> &ensp; 
+  <img src="/res/codemirror.png" alt=""> &ensp; 
+  <img height="106" src="/res/xampp.png" alt="">
+</p>
