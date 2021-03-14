@@ -1,4 +1,4 @@
-![a](https://gemnasium.com/bruneo32/phpmiami.png)
+[![GitHub version](https://badge.fury.io/gh/conventional-changelog%2Fstandard-version.svg)](https://badge.fury.io/gh/conventional-changelog%2Fstandard-version)
 
 # phpmiami
 phpmiami is a free software tool written in PHP, intended to handle the administration of MySQL executing SQL statements over the Web. phpmiami supports a wide range of operations on MySQL and MariaDB.
