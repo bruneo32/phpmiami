@@ -8,7 +8,7 @@ phpmiami is a free software tool written in PHP, intended to handle the administ
 You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.apachefriends.org/download.html).
 
 - Download this repository and unzip it in `...\xampp\htdocs\phpmiami` (or equivalent directory).
-- Start XAMPP (or equivalent). Make sure Apache and MySQL are running.
+- Start XAMPP (or equivalent). Make sure **Apache** and **MySQL** are running.
 - Now open your internet web browser, and look for `localhost/phpmiami`.
 
 
