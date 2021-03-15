@@ -16,9 +16,9 @@
     <script src="codemirror/sql-hint.js"></script>
     <script src="codemirror/matchbrackets.js"></script>
   </head>
-  <body onload="InstantiateCard()">
+  <body onload="InstantiateCard();">
     <div id="topbar">
-      <img src="res/icon.jpg" alt="" onclick="ScrollBottom()" title="Scroll bottom">
+      <img src="res/banner.jpg" alt="" onclick="ScrollBottom()" title="Scroll bottom">
       <span style="color:var(--aux2);">DB: <?php echo $_SESSION["db"]; ?></span>
 
       <hr>

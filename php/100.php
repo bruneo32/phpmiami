@@ -4,17 +4,16 @@
    * Login
    */
 
-  $LOCALHOST=(($_SERVER["SERVER_ADDR"]=="::1" || $_SERVER["SERVER_ADDR"]=="127.0.0.1") ? true:false); // Turn true to allow localhost connections.
-  //$LOCALHOST=true; // Enable this line and comment the previous one to allow localhost access.
 
-  error_reporting(E_ALL ^ E_WARNING); // Supress warnings, comment to debug.
+  require("config.php");
+  if(!$DEBUG_MODE){error_reporting(E_ALL ^ E_WARNING);} // Supress warnings
   session_start();
   require("conn.php");
 
   $h=$_REQUEST["h"];
   $hn=$h;
 
-  if(!$LOCALHOST){
+  if(!$_CONFIG["allow_localhost"]){
     if($h == "localhost"){die("For security reasons, conections to 'localhost' are bloqued. Learn more about localhost <a href=\"\">here</a>.<br><br><a href='../login'>Return</a>");}
   }
   $u=$_REQUEST["u"];
@@ -31,6 +30,6 @@
     die("<b>[System]</b> Conection failed - ".mysqli_connect_errno()."<br>".mysqli_connect_error()."<br><br><a href='../login'>Return</a>");
   }
 
-  //header('Location: ../main');
+  //header('Location: ../main'); // This won't work on some servers
   die('<meta http-equiv="refresh" content="0; URL=../main">');
 ?>

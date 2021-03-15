@@ -1,4 +1,4 @@
-var cardHTML = '<div class="card"><table><tr><td>SQL</td><td><textarea></textarea><br><input type="button" style="float:right;" title="CTRL+ENTER" class="button" value="Run query" onclick="RunQuery()"/></td></tr><tr class="result_query"><td>Result</td><td></td></tr><tr class="result_query"><td onclick="SelectNext(this,1)">Raw result</td><td></td></tr></table></div>';
+var cardHTML = '<div class="card"><table><tr><td>SQL</td><td><textarea></textarea><br><select class="button" title="Copy a snippet to clipboard" onchange="CopySnippet(this)"></select><input type="button" style="float:right;" title="CTRL+ENTER" class="button" value="Run query" onclick="RunQuery()"/></td></tr><tr class="result_query"><td>Result</td><td></td></tr><tr class="result_query"><td onclick="SelectNext(this,1)">Raw result</td><td></td></tr></table></div>';
 var defaults = {
   lineNumbers: true,
   matchBrackets: true,
@@ -12,11 +12,16 @@ var defaults = {
   lineWrapping: true,
   hintOptions: {}
 };
+var snippets=[];
+var snippetsHTML="";
 var G_TEXTAREA=null;
 
 function CopyBtn(btn_elem){
   var textarea = btn_elem.parentElement.children[0];
-  navigator.clipboard.writeText(textarea.value);
+  copyTextToClipboard(textarea.value);
+}
+function CopySnippet(this_elm){
+  copyTextToClipboard(snippets[this_elm.value][1]);
 }
 function SelectNext(btn_elem,ind){
   var elm = btn_elem.parentElement.children[ind];
@@ -30,6 +35,7 @@ function RunQuery(){
   G_TEXTAREA.setAttribute("readonly","true");
   table.parentElement.style.backgroundColor="var(--color2)";
   G_TEXTAREA.parentElement.lastChild.setAttribute("onclick","CopyBtn(this)");
+  G_TEXTAREA.parentElement.lastChild.previousSibling.setAttribute("disabled","true");
   G_TEXTAREA.parentElement.lastChild.value="Copy";
 
   ExecQuery(val,table.children[1].children[1],table.children[2].children[1]);
@@ -44,14 +50,29 @@ function InstantiateCard(){
 
   G_TEXTAREA = document.querySelector(".card:last-child textarea");
   window.editor = CodeMirror.fromTextArea(G_TEXTAREA, defaults);
-  ScrollBottom();
+
+  if(snippetsHTML==""){ // Never loaded snippets.txt
+    G_TEXTAREA.parentElement.lastChild.previousSibling.style.display="none";
+    GetSnippets();
+
+    // Wait 100 milliseconds.
+    setTimeout(function () {
+      if(snippetsHTML!=""){
+        G_TEXTAREA.parentElement.lastChild.previousSibling.innerHTML = snippetsHTML;
+        G_TEXTAREA.parentElement.lastChild.previousSibling.style.display="inline";
+      }
+    }, 100);
+  }else{
+    G_TEXTAREA.parentElement.lastChild.previousSibling.innerHTML = snippetsHTML;
+  }
 
   AutocompletChanged();
   GetTableHint();
+  ScrollBottom();
 }
 
 function ExecQuery(sqlstr,resulte,rawr){
-  console.log(sqlstr);
+  console.debug("SQL: "+sqlstr);
   if (sqlstr.length == 0) {
     InstantiateCard();
   } else {
@@ -62,7 +83,7 @@ function ExecQuery(sqlstr,resulte,rawr){
       if (this.readyState == 4 && this.status == 200) {
 
         var res=this.responseText;
-        console.log(res);
+        console.debug("RAW: "+res);
         rawr.innerHTML=escapeHtml(res);
 
         resulte.parentElement.style.display="table-row";
@@ -75,11 +96,10 @@ function ExecQuery(sqlstr,resulte,rawr){
           InstantiateCard();
           return;
         }
-        console.log(resarray);
+        console.debug("Parsed: "+resarray);
 
         var pres="";
         for (var i = 0; i < resarray.length; i++) {
-          console.log(typeof resarray[i]);
           if(typeof resarray[i]==="boolean" || resarray[i].length==0){
             pres+="<p><i>No result.</i></p>";
           }else if(typeof resarray[i] !== "object"){
@@ -125,9 +145,8 @@ function AutocompletChanged(){
   if(document.getElementById("totalCompletion").checked){
     window.editor.on("keyup", function (cm, event) {
       var cr=cm.getCursor();
-      var pr_char=cm.getLine(cr["line"]).charCodeAt([cr["ch"]]-1); // Character before cursor.
-
-      if(pr_char===undefined || pr_char<48 || pr_char===59){return false;} // Not autocomplete if its <"0", OR ; " '
+      var pr_char=cm.getLine(cr["line"]).charAt([cr["ch"]]-1); // Character before cursor.
+      if(pr_char===undefined || (pr_char!="." && !(/^[a-zA-Z0-9]+$/).test(pr_char))){return false;} // Not autocomplete if its not alfanumeric.
 
       if (!cm.state.completionActive && event.keyCode != 13) {
           CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
@@ -156,6 +175,51 @@ function GetTableHint(){
       window.editor.setOption("hintOptions",defaults["hintOptions"]);
     }
   }
+}
+function GetSnippets(){
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var res=this.responseText;
+      res=res.split("\n");
+
+      for (var i = 0; i < res.length; i++) {
+        if(res[i].toString().trim()==="---"){continue;}
+
+        res[i]=res[i].split("::");
+        if(res[i].length<2){
+          res.splice(i, 1);
+          continue;
+        }
+
+        res[i][1]=res[i][1].replace(/\\n/g,"\n").replace(/\\t/g,"\t");
+      }
+
+      snippets=res;
+
+      snippetsHTML='<option selected disabled value="1000">Copy snippet to clipboard</option>';
+      var groupclosing=false;
+      for (var i = 0; i < snippets.length; i++) {
+        if(snippets[i].toString().trim()==="---"){
+          snippetsHTML+='<option class="separator" disabled="true"></option>';
+          continue;
+        }else if(snippets[i][0]===""){
+          if(groupclosing){snippetsHTML+="<br/></optgroup>";}
+
+          snippetsHTML+='<option class="separator" disabled="true"></option>';
+          snippetsHTML+='<optgroup label="'+snippets[i][1]+'">'
+          groupclosing=true;
+          continue;
+        }
+
+        snippetsHTML+='<option value="'+i.toString()+'">'+snippets[i][0]+"</option>";
+      }
+      if(groupclosing){snippetsHTML+="<br/></optgroup><br/>";}
+      snippetsHTML+='<option class="separator" disabled="true"></option>';
+    }
+  };
+  xmlhttp.open("GET", "snippets.txt", true);
+  xmlhttp.send();
 }
 
 
@@ -186,4 +250,31 @@ function escapeHtml(text) {
   };
 
   return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+
+    // Avoid scrolling to bottom
+    textArea.style.position = "fixed";
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('Fallback: Oops, unable to copy', err);
+    }
+
+    document.body.removeChild(textArea);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {}, function(err) {
+    console.error('Async: Could not copy text. ', err);
+  });
 }

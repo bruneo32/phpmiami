@@ -4,7 +4,9 @@
    * Returns the hintOptions[table] for the code editor using AJAX.
    */
 
-  error_reporting(E_ALL ^ E_WARNING); // Supress warnings, comment to debug.
+
+  require("config.php");
+  if(!$DEBUG_MODE){error_reporting(E_ALL ^ E_WARNING);} // Supress warnings
   session_start();
   require("conn.php");
 

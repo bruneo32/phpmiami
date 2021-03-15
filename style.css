@@ -64,6 +64,14 @@ tt{
   background-color:rgba(0,0,0,0.05);
   border-radius: 3px;
 }
+optgroup{font-weight: bold;font-style: normal;}
+select option[disabled]{
+  font-weight: bold;
+  color:red;
+}
+select option.separator{
+  font-size: 0.25em;
+}
 
 .center{text-align: center;}
 .mono{font-family: 'Roboto',monospace;}
@@ -77,12 +85,16 @@ input[type="text"],input[type="password"]{
 }
 .button{
   font-family: sans-serif;
-  padding:6px 12px;
+  padding:0.5em 1em;
   cursor:pointer;
 }
+.button.little{
+  font-size:10px;
+}
+
 .tip{
   border-bottom: 1px dotted var(--aux2);
-  font-family: monospace;
+  font-family: 'Roboto',monospace;
 }
 
 #top{height:32px;}
@@ -102,9 +114,10 @@ input[type="text"],input[type="password"]{
   margin-right: 6px;
   vertical-align: middle;
 }
+#topbar hr{cursor:default;}
 #topbar span{
   cursor: text;
-  font-family: monospace;
+  font-family: 'Roboto',monospace;
   margin-right: 12px;
   user-select: text;
 }
@@ -131,6 +144,7 @@ input[type="text"],input[type="password"]{
   background-color: var(--color44);
   box-shadow: 0 9px 20px 0px #000;
   margin:16px;
+  overflow-x: auto;
 }
 .card table{
   width:100%;

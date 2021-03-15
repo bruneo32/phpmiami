@@ -1,0 +1,28 @@
+::General
+Select *::SELECT * FROM table_name;
+Select::SELECT column1, column2, columnN\nFROM table_name\nWHERE condition;
+Update::UPDATE table_name\nSET column1=value, column2=value, columnN=value\nWHERE condition;
+Insert into::INSERT INTO table_name (column1,column2,columnN)\nVALUES (value1,value2,valueN);
+Delete::DELETE FROM table_name\nWHERE 0; -- Change this
+::Database
+Show databases::SHOW DATABASES;
+Create database::CREATE DATABASE database_name;
+Drop database::DROP DATABASE database_name;
+::Table
+Show tables::SHOW TABLES;
+Create table::CREATE TABLE table_name (\n\tid int PRIMARY KEY,\n\tcolumn2 datatype,\n\tcolumn3 datatype,\n\tcolumnN datatype\n);
+Drop table::DROP TABLE table_name;
+Truncate table::TRUNCATE TABLE table_name;
+---
+Show columns::SELECT ORDINAL_POSITION AS "N", COLUMN_NAME AS "Column Name", COLUMN_TYPE AS "Datatype", COLUMN_KEY AS "Key", EXTRA\nFROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'table_name';
+Add column::ALTER TABLE table_name\nADD column_name datatype;
+Drop column::ALTER TABLE table_name\nDROP COLUMN column_name;
+Modify column::ALTER TABLE table_name\nMODIFY COLUMN column_name datatype;
+::Users
+Show users::SELECT User, Host, CASE\n  WHEN Password="" THEN "NO" ELSE "YES"\nEND AS "Using password" FROM mysql.user;
+Create user::CREATE USER 'username'@'localhost' IDENTIFIED BY 'user_password'; -- This user will not have any privileges. Use GRANT to assign them.
+Grant privileges::GRANT INSERT, UPDATE, DELETE, ... /* For all privileges use: ALL PRIVILEGES */\nON table_name\nTO username@localhost;
+Drop user::DROP USER 'username'@'localhost';
+::Misc
+Set autoincrement::ALTER TABLE table_name AUTO_INCREMENT=100;
+CASE Statement::CASE\n\tWHEN condition1 THEN result1\n\tWHEN condition2 THEN result2\n\tWHEN conditionN THEN resultN\n\tELSE result\nEND

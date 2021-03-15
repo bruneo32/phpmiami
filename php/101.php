@@ -4,7 +4,9 @@
    * Used by AJAX JavaScript to execute an SQL query and return its result.
    */
 
-  error_reporting(E_ALL ^ E_WARNING); // Supress warnings, comment to debug.
+
+  require("config.php");
+  if(!$DEBUG_MODE){error_reporting(E_ALL ^ E_WARNING);} // Supress warnings
   session_start();
   require("conn.php");
 
