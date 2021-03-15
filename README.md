@@ -1,4 +1,4 @@
-![version](https://img.shields.io/badge/version-0.9-tomato.svg)
+![version](https://img.shields.io/badge/version-1.0-darkblue.svg)
 ![license](https://img.shields.io/badge/license-CC0-orangered.svg)
 
 # phpmiami
