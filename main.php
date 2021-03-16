@@ -28,9 +28,7 @@
       <input type="checkbox" id="tableHint" onchange="GetTableHint()" checked/><label title="The code editor shows the tables of the database in the hints." for="tableHint">Hint tables</label>
 
       <hr>
-
-      <a href="php/0.php">Import</a>
-      <a href="php/0.php">Export</a>
+      
       <a target="_blank" href="https://www.w3schools.com/sql/default.asp">Learn SQL</a>
 
       <div style="float:right;height: 100%;padding: 0.25em 0;">
