@@ -18,7 +18,7 @@ function IMPORT($conn, $filestr){
 	$dbn=$db["name"];
 
 	$x =	"/*\n * XML TO SQL FROM PHPMIAMI\n */" .endl.endl;
-	$x.=	'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'.endl.'SET time_zone = "+00:00";' .endl.endl;
+	$x.=	'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'.endl.'SET AUTOCOMMIT = 0;'.endl.'START TRANSACTION;'.endl.'SET time_zone = "+00:00";' .endl.endl;
 	$x.=	'/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;'.endl.'/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;'.endl.'/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;'.endl.'/*!40101 SET NAMES utf8 */;' .endl.endl.endl;
 
 	$x.=	"DROP DATABASE IF EXISTS `$dbn`;" .endl;

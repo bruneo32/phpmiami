@@ -103,11 +103,11 @@ function EXPORT($conn, $database, $gdt, $incStoredProcedures){
 
 	// INCLUDE STORED PROCEDURES
 	if($incStoredProcedures){
-		$queryTables = mysqli_query($conn,'SHOW PROCEDURE STATUS'); // Viene de todas las bases de datos
+		$queryTables = mysqli_query($conn,'SHOW PROCEDURE STATUS WHERE Db="'.$database.'"'); // Viene de todas las bases de datos
 		while($row = mysqli_fetch_row($queryTables)) { if($row[0]==$database) $procs[] = $row[1];}
 
 		foreach($procs as $i=>$proc) {
-			$res = mysqli_query($conn,'SHOW CREATE PROCEDURE '.$proc);
+			$res = mysqli_query($conn,'SHOW CREATE PROCEDURE '.$database.'.'.$proc);
 			$proc_cr=str_replace("\n"," ",mysqli_fetch_row($res)[2]);
 
 			$x.= '		<procedure name="'.$proc.'">' .endl;

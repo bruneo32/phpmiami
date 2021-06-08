@@ -28,7 +28,7 @@ function EXPORT_DATABASE($host,$user,$pass,$name, $incStoredProcedures,       $t
 	while($row = $queryTables->fetch_row()) { $target_tables[] = $row[0]; $target_tables_type[] = $row[1];}
 	if($tables !== false) { $target_tables = array_intersect( $target_tables, $tables); }
 
-	$content = "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\nSTART TRANSACTION;\nSET time_zone = \"+00:00\";\n\n\n/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\n/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\n/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n/*!40101 SET NAMES utf8 */;\n\n\n/*\n * Database: `".$name."`\n */\n";
+	$content = "SET SQL_MODE = \"NO_AUTO_VALUE_ON_ZERO\";\nSET AUTOCOMMIT = 0;\nSTART TRANSACTION;\nSET time_zone = \"+00:00\";\n\n\n/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;\n/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;\n/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;\n/*!40101 SET NAMES utf8 */;\n\n\n/*\n * Database: `".$name."`\n */\n";
 
 	$content.= "DROP DATABASE IF EXISTS `".$name."`;";
 	$content.= "\n".$mysqli->query('SHOW CREATE DATABASE '.$name)->fetch_row()[1].";";

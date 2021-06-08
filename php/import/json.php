@@ -4,7 +4,7 @@ function IMPORT($conn, $filestr){
 	if(!isset($conn)){return false;}
 	if(!isset($filestr)){return false;}
 
-	$text=str_replace("\r","",str_replace("\n","",str_replace("\t","",html_entity_decode($filestr))));
+	$text=str_replace("\r","",str_replace("\n","",str_replace("\t","",html_entity_decode($filestr, ENT_QUOTES | ENT_HTML5))));
 	$fjson = json_decode($text, true);
 
 	if($fjson == null){
@@ -16,7 +16,7 @@ function IMPORT($conn, $filestr){
 		$dbn = $fjson[$db_i]["name"];
 
 		$x =	"/*\n * JSON TO SQL FROM PHPMIAMI\n */" .endl.endl;
-		$x.=	'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'.endl.'SET time_zone = "+00:00";' .endl.endl;
+		$x.=	'SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";'.endl.'SET AUTOCOMMIT = 0;'.endl.'START TRANSACTION;'.endl.'SET time_zone = "+00:00";' .endl.endl;
 		$x.=	'/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;'.endl.'/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;'.endl.'/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;'.endl.'/*!40101 SET NAMES utf8 */;' .endl.endl.endl;
 
 		$x.=	"DROP DATABASE IF EXISTS `$dbn`;" .endl;

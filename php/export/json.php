@@ -8,7 +8,7 @@ function EXPORT($conn, $database, $gdt, $incStoredProcedures){
 
 	$x= "[".endl;
 	$x.= '	{'.endl.'		"type": "header",'.endl.'		"comment": "JSON EXPORT FROM PHPMIAMI",'.endl.endl.'		"host": "'.$_SESSION["h"].'",'.endl.'		"generation_time": "'.$gdt.'",'.endl.'		"php_version": "'.phpversion().'"'.endl.'	},'.endl;
-	
+
 	$x.= '	{"type":"database", "name":"'.$database.'"},'.endl;
 	$x.= endl;
 
@@ -59,11 +59,11 @@ function EXPORT($conn, $database, $gdt, $incStoredProcedures){
 		if($incStoredProcedures){
 			$x.= ",\n\n";
 
-			$queryTables = mysqli_query($conn,'SHOW PROCEDURE STATUS'); // Viene de todas las bases de datos
+			$queryTables = mysqli_query($conn,'SHOW PROCEDURE STATUS WHERE Db="'.$database.'"'); // Viene de todas las bases de datos
 			while($row = mysqli_fetch_row($queryTables)) { if($row[0]==$database) $procs[] = $row[1];}
 
 			foreach($procs as $i=>$proc) {
-				$res = mysqli_query($conn,'SHOW CREATE PROCEDURE '.$proc);
+				$res = mysqli_query($conn,'SHOW CREATE PROCEDURE '.$database.'.'.$proc);
 				$proc_cr=str_replace("\"","\\\"",str_replace("\n"," ",mysqli_fetch_row($res)[2]));
 
 				$x.= '	{"type":"procedure","name":"'.$proc.'","database":"'.$database.'","create":"'.$proc_cr.'"}';

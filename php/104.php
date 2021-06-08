@@ -37,6 +37,8 @@ $stateok=true;
 if($ftype=="sql"){
 
 	// QUERY
+	$filestr=html_entity_decode($filestr, ENT_QUOTES | ENT_HTML5);
+
 	$result=mysqli_multi_query($conn, $filestr);
 	if(!$result){$stateok=false;}
 
@@ -64,6 +66,7 @@ if($ftype=="sql"){
 			$x=		"MYSQLERROR:\n".mysqli_error($conn) .endl;
 		}
 
+		$x=html_entity_decode($x, ENT_QUOTES | ENT_HTML5);
 		$result=mysqli_multi_query($conn, $x);
 		if(!$result){$stateok=false;}
 

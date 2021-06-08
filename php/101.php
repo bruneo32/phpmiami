@@ -28,8 +28,8 @@
           array_push($fin[$j],$row);
         }
       }else{
-				$fin[$j]="<b>Affected rows:</b> ".mysqli_affected_rows($conn);
-        //$fin[$j]=$result;
+		$fin[$j]="<b>Affected rows:</b> ".mysqli_affected_rows($conn);
+		//$fin[$j]=$result;
       }
 
 
@@ -46,8 +46,8 @@
                 array_push($fin[$j],$row);
               }
             }else{
-							$fin[$j]="<b>Affected rows:</b> ".mysqli_affected_rows($conn);
-              //$fin[$j]=$result;
+				$fin[$j]="<b>Affected rows:</b> ".mysqli_affected_rows($conn);
+				//$fin[$j]=$result;
             }
           } else {
             /* Result set read error */
