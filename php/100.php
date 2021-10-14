@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PHP Miami</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../res/icon.jpg">
+    <link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="#" id="externalStylesheet">
+
+    <style>
+		body{padding:32px;}
+    </style>
+	
+	<script src="../theme.js" charset="utf-8"></script>
+  </head>
+  <body onload="LoadStyles()">
 <?php
   /*
    * 100.php
@@ -27,9 +43,13 @@
   $_SESSION["so"]=$_GET["so"];
 
   if(!connect()){
-    die("<b>[System]</b> Conection failed - ".mysqli_connect_errno()."<br>".mysqli_connect_error()."<br><br><a href='../login'>Return</a>");
+    die("<b>[System]</b> Conection failed - ".mysqli_connect_errno()."<br>".mysqli_connect_error()."<br><br><a class='button' href='../login'>Return</a>".
+	"</body></html>");
   }
 
   //header('Location: ../main'); // This won't work on some servers
   die('<meta http-equiv="refresh" content="0; URL=../main">');
 ?>
+
+  </body>
+</html>

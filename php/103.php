@@ -23,7 +23,7 @@
     $q2="SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'(a)'";
   }
 
-  $result=mysqli_query($conn,$q);
+	$result=mysqli_query($conn,$q);
   if(!$result){die();}
 
   $tables=mysqli_fetch_all($result);
@@ -41,6 +41,20 @@
       if(!isset($array[$b])){$array[$b]=array();}
     }
   }
+
+	// PROCEDURES
+	if(isset($_GET["proc"])){
+		$q="SHOW PROCEDURE STATUS";
+
+		$result=mysqli_query($conn,$q);
+	  if(!$result){die();}
+
+	  $tables=mysqli_fetch_all($result);
+	  for ($i=0; $i < count($tables); $i++) {
+	    $a=strval($tables[$i][1])."()";
+	    $array[$a]=array();
+	  }
+	}
 
   echo json_encode($array);
 ?>

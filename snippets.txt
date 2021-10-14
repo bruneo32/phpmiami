@@ -8,9 +8,12 @@ Delete::DELETE FROM table_name\nWHERE 0; -- Change this
 Show databases::SHOW DATABASES;
 Create database::CREATE DATABASE database_name;
 Drop database::DROP DATABASE database_name;
-::Table
+---
 Show tables::SHOW TABLES;
-Create table::CREATE TABLE table_name (\n\tid int PRIMARY KEY,\n\tcolumn2 datatype,\n\tcolumn3 datatype,\n\tcolumnN datatype\n);
+Show full tables::SHOW FULL TABLES;
+Show tables only::SHOW FULL TABLES WHERE table_type<>'view';
+::Table
+Create table::CREATE TABLE table_name (\n\tid int NOT NULL AUTO_INCREMENT,\n\tcolumn2 datatype,\n\tcolumn3 datatype,\n\tcolumnN datatype,\n\n\tPRIMARY KEY (id)\n);
 Drop table::DROP TABLE table_name;
 Truncate table::TRUNCATE TABLE table_name;
 ---
@@ -23,6 +26,18 @@ Show users::SELECT User, Host, CASE\n  WHEN Password="" THEN "NO" ELSE "YES"\nEN
 Create user::CREATE USER 'username'@'localhost' IDENTIFIED BY 'user_password'; -- This user will not have any privileges. Use GRANT to assign them.
 Grant privileges::GRANT INSERT, UPDATE, DELETE, ... /* For all privileges use: ALL PRIVILEGES */\nON table_name\nTO username@localhost;
 Drop user::DROP USER 'username'@'localhost';
+::Stored Procedures
+Show procedures::SHOW PROCEDURE STATUS;
+Execute procedure::CALL proc_name;
+---
+Create procedure::CREATE PROCEDURE proc_name()\nBEGIN\n	SELECT "world" AS "hello";\nEND;
+Create procedure (params)::CREATE PROCEDURE proc_name(\n	IN param1 varchar(10),\n	IN param2 int\n)\nBEGIN\n	SELECT param1,param2;\nEND;
+Drop procedure::DROP PROCEDURE proc_name;
+::Views
+Show views::SHOW FULL TABLES WHERE table_type='view';
+---
+Create view::CREATE VIEW view_name AS\nSELECT "world" AS "hello";
+Drop view::DROP VIEW view_name;
 ::Misc
 Set autoincrement::ALTER TABLE table_name AUTO_INCREMENT=100;
 CASE Statement::CASE\n\tWHEN condition1 THEN result1\n\tWHEN condition2 THEN result2\n\tWHEN conditionN THEN resultN\n\tELSE result\nEND

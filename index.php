@@ -6,6 +6,7 @@
     <title>Log in · PHP Miami</title>
     <link rel="shortcut icon" type="image/x-icon" href="res/icon.jpg">
     <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="#" id="externalStylesheet">
 
     <style>
       img{
@@ -59,8 +60,9 @@
         vertical-align: baseline;
       }
     </style>
+	<script src="theme.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body onload="LoadStyles()">
     <form action="php/100.php" method="GET">
       <img src="res/banner.jpg" alt="">
       <h2>Open source database administrator via SQL over the web.</h2>
