@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/bruneo32/phpmiami/main/res/banner.jpg" alt="logo"/>
 </p>
 <style>
-  *{max-width:100%;}
+  *{max-width:100% !important;}
   img{margin:12px;}
 </style>
 
