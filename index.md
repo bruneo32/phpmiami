@@ -9,6 +9,7 @@
 - **Customizable** styles and themes (_**Dark modes** included_)
 - Styled error pages
 - Minor bugs and styles fixed
+
 \
 
 See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/edit/1.2/CHANGELOG.md)
@@ -16,4 +17,4 @@ See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/edit/1.2/CHANGE
 ### Support or Contact
 
 Having trouble with phpmiami?
-Send me an email to [bruno@retronomicon.gq}](mailto:bruno@retronomicon.gq) and I will answer the fast as I can
+Send me an email to [bruno@retronomicon.gq](mailto:bruno@retronomicon.gq) and I will answer the fast as I can
