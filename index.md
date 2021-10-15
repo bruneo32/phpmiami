@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/bruneo32/phpmiami/1.2/res/banner.jpg" alt="logo"/>
+  <img src="https://raw.githubusercontent.com/bruneo32/phpmiami/main/res/banner.jpg" alt="logo"/>
 </p>
 
 \
@@ -32,6 +32,6 @@ Send me an email to [bruno@retronomicon.gq](mailto:bruno@retronomicon.gq) and I 
 
 <br/><hr/>
 <p align="center">
-  <a target="_blank" href="https://www.retronomicon.gq/phpmiami"><img src="/res/banner.jpg" alt=""></a> &ensp;
-  <a target="_blank" href="https://codemirror.net"><img src="/res/codemirror.png" alt=""></a>
+  <a target="_blank" href="https://bruneo32.github.io/phpmiami/"><img src="https://raw.githubusercontent.com/bruneo32/phpmiami/main/res/banner.jpg" alt=""></a> &ensp;
+  <a target="_blank" href="https://codemirror.net"><img src="https://raw.githubusercontent.com/bruneo32/phpmiami/main/res/codemirror.png" alt=""></a>
 </p>
