@@ -18,7 +18,11 @@ See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/blob/1.2/CHANGE
 ## Requests and ideas
 
 Tell us your ideas and we will considerate including them in future versions of phpmiami.
+
 [Update request](https://github.com/bruneo32/phpmiami/issues/1)
+
+### Screenshots
+![img-01](screenshots/01.png)
 
 ### Installation
 You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.apachefriends.org/download.html).
