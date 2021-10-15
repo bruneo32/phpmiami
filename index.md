@@ -10,8 +10,6 @@
 - Styled error pages
 - Minor bugs and styles fixed
 
-\
-
 See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/edit/1.2/CHANGELOG.md)
 
 ### Support or Contact
