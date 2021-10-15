@@ -1,4 +1,4 @@
-![logo](https://github.com/bruneo32/phpmiami/blob/1.2/res/banner.jpg)
+![logo](https://raw.githubusercontent.com/bruneo32/phpmiami/1.2/res/banner.jpg)
 \
 ![version](https://img.shields.io/badge/version-1.2-cornflowerblue.svg)
 ![license](https://img.shields.io/badge/license-CC0-orangered.svg)
