@@ -15,6 +15,15 @@
 
 See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/blob/1.2/CHANGELOG.md)
 
+
+### Installation
+You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.apachefriends.org/download.html).
+
+- Download this repository and unzip it in `...\xampp\htdocs\phpmiami` (or equivalent directory).
+- Start XAMPP (or equivalent). Make sure **Apache** and **MySQL** are running.
+- Now open your internet web browser, and look for `localhost/phpmiami`.
+
+
 ### Support or Contact
 
 Having trouble with phpmiami?
