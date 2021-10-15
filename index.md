@@ -28,3 +28,10 @@ You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.
 
 Having trouble with phpmiami?
 Send me an email to [bruno@retronomicon.gq](mailto:bruno@retronomicon.gq) and I will answer the fast as I can
+
+
+<br/><hr/>
+<p align="center">
+  <a target="_blank" href="https://www.retronomicon.gq/phpmiami"><img src="/res/banner.jpg" alt=""></a> &ensp;
+  <a target="_blank" href="https://codemirror.net"><img src="/res/codemirror.png" alt=""></a>
+</p>
