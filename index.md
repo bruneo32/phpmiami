@@ -6,7 +6,7 @@
 ![version](https://img.shields.io/badge/version-1.2-cornflowerblue.svg)
 ![license](https://img.shields.io/badge/license-CC0-orangered.svg)
 
-# What's new? v-1.2
+## What's new? 1.2
 
 - Removable **cards**
 - **Customizable** styles and themes (_**Dark modes** included_)
