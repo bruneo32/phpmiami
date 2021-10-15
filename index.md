@@ -22,7 +22,13 @@ Tell us your ideas and we will considerate including them in future versions of 
 [Update request](https://github.com/bruneo32/phpmiami/issues/1)
 
 ### Screenshots
-![img-01](screenshots/01.png)
+![img-01](/screenshots/01.png)
+![img-02](/screenshots/02.png)
+![img-03](/screenshots/03.png)
+![img-04](/screenshots/04.png)
+![img-05](/screenshots/05.png)
+![img-06](/screenshots/06.png)
+![img-07](/screenshots/07.png)
 
 ### Installation
 You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.apachefriends.org/download.html).
