@@ -1,6 +1,9 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/bruneo32/phpmiami/main/res/banner.jpg" alt="logo"/>
 </p>
+<style>
+  img{margin:12px;}
+</style>
 
 \
 ![version](https://img.shields.io/badge/version-1.2-cornflowerblue.svg)
