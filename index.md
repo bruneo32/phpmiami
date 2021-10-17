@@ -9,6 +9,7 @@
 \
 ![version](https://img.shields.io/badge/version-1.2-cornflowerblue.svg)
 ![license](https://img.shields.io/badge/license-CC0-orangered.svg)
+[![ghp](https://github.com/bruneo32/phpmiami/blob/gh-pages/ghpbanner.png?raw=true)](https://bruneo32.github.io/phpmiami/)
 
 ## What's new? 1.2
 
