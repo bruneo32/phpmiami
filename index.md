@@ -42,7 +42,7 @@ Tell us your ideas and we will considerate including them in future versions of 
 
 ![img-07](/screenshots/07.png)
 
-### See and publish MEMES
+### Enjoy and publish MEMES
 [PHPMIAMI MEMES](https://github.com/bruneo32/phpmiami/tree/gh-pages/memes)
 
 ### Installation
