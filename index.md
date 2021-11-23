@@ -56,7 +56,7 @@ You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.
 ### Support or Contact
 
 Having trouble with phpmiami?
-Send me an email to [bruno@retronomicon.gq](mailto:bruno@retronomicon.gq) and I will answer the fast as I can
+Send me an email to [bruneo32b@gmail.com](mailto:bruneo32b@gmail.com) and I will answer the fast as I can
 
 
 <br/>
