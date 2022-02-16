@@ -2,3 +2,4 @@ RewriteEngine On
 
 RewriteRule ^login$ index.php$1 [NC]
 RewriteRule ^main$ main.php$1 [NC]
+RewriteRule ^iedb$ iedb.php$1 [NC]
