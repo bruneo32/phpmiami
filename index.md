@@ -7,18 +7,20 @@
 </style>
 
 \
-![version](https://img.shields.io/badge/version-1.2-cornflowerblue.svg)
+![version](https://img.shields.io/badge/version-1.3-cornflowerblue.svg)
 ![license](https://img.shields.io/badge/license-CC0-orangered.svg)
 [![ghp](https://github.com/bruneo32/phpmiami/blob/gh-pages/ghpbanner.png?raw=true)](https://bruneo32.github.io/phpmiami/)
 
 ## What's new? 1.2
 
-- Removable **cards**
-- **Customizable** styles and themes (_**Dark modes** included_)
-- Styled error pages
-- Minor bugs and styles fixed
+- Rerun card
+- Change database without logout
+- Updated deprecated email address
+- Parse `\n` as `<br>` in SQL results
+- Fixed problem exporting SQL with *Included procedures*
+- Minor bugs fixed
 
-See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/blob/1.2/CHANGELOG.md)
+See the full [CHANGELOG.md](https://github.com/bruneo32/phpmiami/blob/1.3/CHANGELOG.md)
 
 ## Requests and ideas
 
@@ -42,8 +44,6 @@ Tell us your ideas and we will considerate including them in future versions of 
 
 ![img-07](/screenshots/07.png)
 
-### Enjoy and publish MEMES
-[PHPMIAMI MEMES](https://github.com/bruneo32/phpmiami/tree/gh-pages/memes)
 
 ### Installation
 You will need a `localhost` server with PHP and MySQL, like [xampp](https://www.apachefriends.org/download.html).
