@@ -9,4 +9,4 @@
 - Minor bugs fixed
 
 \
-[https://github.com/bruneo32/phpmiami](https://github.com/bruneo32/phpmiami)
+[https://bruneo32.github.io/phpmiami/](https://bruneo32.github.io/phpmiami/)
