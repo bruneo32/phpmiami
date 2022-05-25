@@ -64,7 +64,7 @@ if($ftype=="sql"){
 	}
 
 	echo '<div class="card"'.($stateok ? 'style="background:var(--color2);"' : '').'><table><tr><td>RAW</td><td>';
-	echo '<textarea class="textin" id="vtext">'.$x.'</textarea>';
+	echo '<textarea class="textin" id="vtext" style="background: var(--aux1); color: var(--aux2);">'.$x.'</textarea>';
 	echo "<br><button class='button' onclick='DownloadText(\"$filename\",\"vtext\",\"$fcharset\")'>DOWNLOAD</button>";
 	echo '<input type="button" style="float:right;" class="button" value="Copy to clipboard" onclick="CopyBtn(this)"/>';
 	echo '</td></tr></table></div>';
@@ -82,7 +82,7 @@ if($ftype=="sql"){
 		}
 
 		echo '<div class="card"'.($stateok ? 'style="background:var(--color2);"' : '').'><table><tr><td>RAW</td><td>';
-		echo '<textarea class="textin" id="vtext">'.$x.'</textarea>';
+		echo '<textarea class="textin" id="vtext" style="background: var(--aux1); color: var(--aux2);">'.$x.'</textarea>';
 		echo "<br><button class='button' onclick='DownloadText(\"$filename\",\"vtext\",\"$fcharset\")'>DOWNLOAD</button>";
 		echo '<input type="button" style="float:right;" class="button" value="Copy to clipboard" onclick="CopyBtn(this)"/>';
 		echo '</td></tr></table></div>';

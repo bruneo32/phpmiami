@@ -18,7 +18,7 @@ const THEMES = [
 
 		"aux1":"#FFFFFF",
 		"aux2":"#000000",
-		"aux11":"#CCCCCC",
+		"aux11":"#EEEEEE",
 		"aux22":"#666666"
 	},
 	/* FLOWER */
@@ -40,7 +40,7 @@ const THEMES = [
 
 		"aux1":"#FFFFFF",
 		"aux2":"#000000",
-		"aux11":"#CCCCCC",
+		"aux11":"#EEEEEE",
 		"aux22":"#666666"
 	},
 	/* Sand */
@@ -62,7 +62,7 @@ const THEMES = [
 
 		"aux1":"#FFFFFF",
 		"aux2":"#000000",
-		"aux11":"#CCCCCC",
+		"aux11":"#EEEEEE",
 		"aux22":"#666666"
 	},
 	/* Sky */
@@ -82,9 +82,9 @@ const THEMES = [
 		"color33":"#667292",
 		"color44":"#f1e3dd",
 
-		"aux1":"#000000",
+		"aux1":"#666666",
 		"aux2":"#000000",
-		"aux11":"#FFFFFF",
+		"aux11":"#EEEEEE",
 		"aux22":"#666666"
 	},
 	/* Rustic */
@@ -106,7 +106,7 @@ const THEMES = [
 
 		"aux1":"#FFFFFF",
 		"aux2":"#000000",
-		"aux11":"#FFFFFF",
+		"aux11":"#EEEEEE",
 		"aux22":"#666666"
 	},
 	/* Matrix */
@@ -128,7 +128,7 @@ const THEMES = [
 
 		"aux1":"#00FF00",
 		"aux2":"#FFFFFF",
-		"aux11":"#CCCCCC",
+		"aux11":"#000000",
 		"aux22":"#1A2E1B"
 	},
 	/* Darcula*/
@@ -150,8 +150,8 @@ const THEMES = [
 
 		"aux1":"#222222",
 		"aux2":"#EEEEEE",
-		"aux11":"#FFFFFF",
-		"aux22":"#666666"
+		"aux11":"#424242",
+		"aux22":"#828282"
 	},
 	/* dRACULA*/
 	{
@@ -172,8 +172,8 @@ const THEMES = [
 
 		"aux1":"#222222",
 		"aux2":"#EEEEEE",
-		"aux11":"#FFFFFF",
-		"aux22":"#666666"
+		"aux11":"#424242",
+		"aux22":"#828282"
 	}
 ];
 

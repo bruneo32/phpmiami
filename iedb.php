@@ -9,69 +9,69 @@
 		<link rel="stylesheet" href="#" id="externalStylesheet">
 
 		<style>
-		form{
-			display:inline-block;
-			vertical-align: top;
-			width: calc(50% - 2px);
-			box-sizing: border-box;
-		}
+			form{
+				display:inline-block;
+				vertical-align: top;
+				width: calc(50% - 2px);
+				box-sizing: border-box;
+			}
 
-		h2{
-			text-align: center;
-			font-size:1.2em;
-		}
-		.card table{
-			width:revert;
-			margin: 0 auto;
-			border-spacing: 12px;
-		}
-		.card input{
-			padding:0.25em 0.5ch !important;
-		}
-		.card input[type="submit"],.card input[type="button"]{
-			cursor: pointer;
-		}
+			h2{
+				text-align: center;
+				font-size:1.2em;
+			}
+			.card table{
+				width:revert;
+				margin: 0 auto;
+				border-spacing: 12px;
+			}
+			.card input{
+				padding: 0.25em 0.5ch !important;
+			}
+			.card input[type="submit"],.card input[type="button"]{
+				cursor: pointer;
+			}
 
-		option.miximportable{
-			color:blue;
-		}
-		option.unimportable{
-			color:red;
-		}
+			option.miximportable{
+				color: blue !important;
+			}
+			option.unimportable{
+				color: red !important;
+			}
 		</style>
 		<script type="text/javascript">
-		function escapeHtml(text) {
-			var map = {
-				'&': '&amp;',
-				'<': '&lt;',
-				'>': '&gt;',
-				'"': '&quot;',
-				"'": '&#039;',
-				"`": '&#768;'
-			};
+			function escapeHtml(text) {
+				var map = {
+					'&': '&amp;',
+					'<': '&lt;',
+					'>': '&gt;',
+					'"': '&quot;',
+					"'": '&#039;',
+					"`": '&#768;'
+				};
 
-			return text.toString().replace(/[&<>"']/g, function(m) { return map[m]; });
-		}
+				return text.toString().replace(/[&<>"']/g, function(m) { return map[m]; });
+			}
 
-		function LoadFileStr(event){
-			var input = event.target;
-			var reader = new FileReader();
-			reader.onload = function(){
-				document.getElementById("f_imp_filestr").value = escapeHtml(this.result);
-			};
-			reader.readAsText(input.files[0]);
+			function LoadFileStr(event){
+				var input = event.target;
+				var reader = new FileReader();
+				reader.onload = function(){
+					document.getElementById("f_imp_filestr").value = escapeHtml(this.result);
+				};
+				reader.readAsText(input.files[0]);
 
-			var filename=input.files[0].name.toString();
-			ffm = filename.substr(filename.indexOf(".")+1);
+				var filename=input.files[0].name.toString();
+				ffm = filename.substr(filename.indexOf(".")+1);
 
-			var formats = document.getElementById("f_imp_format").children;
-			for (var i = 0; i < formats.length; i++) {
-				if(formats[i].value==ffm){
-					document.getElementById("f_imp_format").selectedIndex=i;
-					break;
+				var formats = document.getElementById("f_imp_format").children;
+				for (var i = 0; i < formats.length; i++) {
+					if(formats[i].value==ffm){
+						document.getElementById("f_imp_format").selectedIndex=i;
+						break;
+					}
 				}
 			}
-		}
 		</script>
 
 	    <script src="theme.js" charset="utf-8"></script>
@@ -84,7 +84,7 @@
 			<hr>
 			<a href="main">Return to PHPMIAMI</a>
 
-			<div style="float:right;height: 100%;padding: 0.25em 0;">
+			<div class="rside">
 				<span><?php echo $_SESSION["u"]."@".$_SESSION["hn"]; ?></span>
 				<a href="php/102.php">Log out</a>
 			</div>
@@ -101,7 +101,7 @@
 						<tr>
 							<td><label for="f_imp_file">File</label></td>
 							<td>
-								<input type="file" id="f_imp_file" name="f_imp_file" onchange="LoadFileStr(event)" accept=".sql, .csv, .tsv, .xml, .json"></td>
+								<input type="file" id="f_imp_file" name="f_imp_file" onchange="LoadFileStr(event)" accept=".sql, .csv, .tsv, .xml, .json, .db"></td>
 								<input type="hidden" id="f_imp_filestr" name="f_imp_filestr" value=""/>
 							</td>
 						</tr>

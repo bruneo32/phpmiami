@@ -78,7 +78,10 @@ function EXPORT_DATABASE($host,$user,$pass,$name, $incStoredProcedures,       $t
 		$content.= "\n";
 
 		$queryTables = $mysqli->query('SHOW PROCEDURE STATUS');
-		while($row = $queryTables->fetch_row()) { $procs[] = $row[1];}
+		while($row = $queryTables->fetch_row()) {
+			if($row[0]!=$name){continue;}
+			$procs[] = $row[1];
+		}
 
 		foreach($procs as $table) {
 			$res = $mysqli->query('SHOW CREATE PROCEDURE '.$table);
@@ -94,11 +97,5 @@ function EXPORT_DATABASE($host,$user,$pass,$name, $incStoredProcedures,       $t
 	$content .= "\nCOMMIT;\n/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;\n/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;\n/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;\n";
 
 	return $content;
-
-	/*
-	$backup_name = $backup_name ? $backup_name : $name.'___('.date('H-i-s').'_'.date('d-m-Y').').sql';
-	ob_get_clean(); header('Content-Type: application/octet-stream');  header("Content-Transfer-Encoding: Binary");  header('Content-Length: '. (function_exists('mb_strlen') ? mb_strlen($content, '8bit'): strlen($content)) );    header("Content-disposition: attachment; filename=\"".$backup_name."\"");
-	echo $content; exit;
-	*/
 }
 ?>

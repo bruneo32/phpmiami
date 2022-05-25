@@ -1,4 +1,4 @@
-var cardHTML = '<div style="position:relative;right:0;transition: 0.8s;"><div class="closebtn" title="Remove this card" onclick="RemoveCard(this)">x</div><div class="card"><table><tr><td>SQL</td><td><textarea></textarea><br><select class="button" title="Copy a snippet to clipboard" onchange="CopySnippet(this)"></select><input type="button" style="float:right;" title="CTRL+ENTER" class="button" value="Run query" onclick="RunQuery()"/></td></tr><tr class="result_query"><td>Result</td><td></td></tr><tr class="result_query raw"><td onclick="SelectNext(this,1)">Raw result</td><td></td></tr></table></div></div>';
+var cardHTML = '<div style="position:relative;right:0;transition: 0.8s;"><div class="closebtn" title="Remove this card" onclick="RemoveCard(this)">x</div><div class="card"><table><tr><td>SQL</td><td><textarea></textarea><br><select class="button" title="Copy a snippet to clipboard" onchange="CopySnippet(this)"></select><input type="button" style="margin:0 12px;display:none;float:right;" class="button" value="Rerun query" data-cx="0" onclick="this.style.display=\'none\';ExecQuery(this.previousSibling.previousSibling.previousSibling.previousSibling.value,this.parentElement.parentElement.parentElement.lastChild.previousSibling.lastChild,this.parentElement.parentElement.parentElement.lastChild.lastChild, false);;"/><input type="button" style="float:right;" title="CTRL+ENTER" class="button" value="Run query" onclick="this.style.display=\'none\';RunQuery()"/></td></tr><tr class="result_query"><td>Result</td><td></td></tr><tr class="result_query raw"><td onclick="SelectNext(this,1)">Raw result</td><td></td></tr></table></div></div>';
 var defaults = {
 	lineNumbers: true,
 	matchBrackets: true,
@@ -16,6 +16,8 @@ var defaults = {
 var snippets=[];
 var snippetsHTML="";
 var G_TEXTAREA=null;
+
+var xmlhttp = new XMLHttpRequest();
 
 function RemoveCard(btn_elem){
 	var wrap_card = btn_elem.parentElement;
@@ -47,13 +49,21 @@ function CopyBtn(btn_elem){
 	}
 }
 function CopySnippet(this_elm){
+	if(this_elm.value == 0){
+		location = "snippets";
+		this_elm.selectedIndex=0;
+		return;
+	}
+
 	copyTextToClipboard(snippets[this_elm.value][1]);
+	//this_elm.selectedIndex=0;
 }
 function SelectNext(btn_elem,ind){
 	var elm = btn_elem.parentElement.children[ind];
 	selectText(elm);
 }
 
+var aloaderg = null;
 function RunQuery(){
 	var table = G_TEXTAREA.parentElement.parentElement.parentElement;
 	var val = window.editor.getValue();
@@ -61,8 +71,10 @@ function RunQuery(){
 	G_TEXTAREA.setAttribute("readonly","true");
 	table.parentElement.style.backgroundColor="var(--color2)";
 	G_TEXTAREA.parentElement.lastChild.setAttribute("onclick","CopyBtn(this)");
-	G_TEXTAREA.parentElement.lastChild.previousSibling.setAttribute("disabled","true");
 	G_TEXTAREA.parentElement.lastChild.value="Copy";
+
+	// Copy Snippets disabled
+	G_TEXTAREA.parentElement.lastChild.previousSibling.previousSibling.previousSibling.setAttribute("disabled", true);
 
 	ExecQuery(val,table.children[1].children[1],table.children[2].children[1]);
 
@@ -78,18 +90,18 @@ function InstantiateCard(){
 	window.editor = CodeMirror.fromTextArea(G_TEXTAREA, defaults);
 
 	if(snippetsHTML==""){ // Never loaded snippets.txt
-		G_TEXTAREA.parentElement.lastChild.previousSibling.style.display="none";
+		G_TEXTAREA.parentElement.lastChild.previousSibling.previousSibling.style.display="none";
 		GetSnippets();
 
-		// Wait 100 milliseconds.
+		// Wait 333 milliseconds.
 		setTimeout(function () {
 			if(snippetsHTML!=""){
-				G_TEXTAREA.parentElement.lastChild.previousSibling.innerHTML = snippetsHTML;
-				G_TEXTAREA.parentElement.lastChild.previousSibling.style.display="inline";
+				G_TEXTAREA.parentElement.lastChild.previousSibling.previousSibling.innerHTML = snippetsHTML;
+				G_TEXTAREA.parentElement.lastChild.previousSibling.previousSibling.style.display="inline";
 			}
-		}, 100);
+		}, 333);
 	}else{
-		G_TEXTAREA.parentElement.lastChild.previousSibling.innerHTML = snippetsHTML;
+		G_TEXTAREA.parentElement.lastChild.previousSibling.previousSibling.innerHTML = snippetsHTML;
 	}
 
 	AutocompletChanged();
@@ -97,15 +109,13 @@ function InstantiateCard(){
 	ScrollBottom();
 }
 
-function ExecQuery(sqlstr,resulte,rawr){
-	// console.debug("SQL: "+sqlstr);
+function ExecQuery(sqlstr,resulte,rawr,instantiateCard = true){
 	if (sqlstr.length == 0) {
 		resulte.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].style.display="block";
-		InstantiateCard();
+		if (instantiateCard) {InstantiateCard();}
 	} else {
 		sqlstr=sqlstr.replace(new RegExp("\n","g")," ");
 
-		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				resulte.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].style.display="block";
@@ -119,11 +129,21 @@ function ExecQuery(sqlstr,resulte,rawr){
 				resulte.parentElement.style.display="table-row";
 				rawr.parentElement.style.display="table-row";
 
+				// Show copy
+				rawr.parentElement.parentElement.firstChild.lastChild.lastChild.style.display="inline-block";
+
+				var rrbtn = rawr.parentElement.parentElement.firstChild.lastChild.lastChild.previousSibling;
+				var CX = parseInt(rrbtn.getAttribute("data-cx"));
+				rrbtn.style.display="inline-block";
+				CX++;
+				rrbtn.setAttribute("data-cx", CX);
+				if (CX > 1) {rrbtn.value= "Rerun query ("+ CX +")";}
+
 				try{
 					var resarray = JSON.parse(res);
 				} catch(err){
 					resulte.innerHTML=res;
-					InstantiateCard();
+					if (instantiateCard) {InstantiateCard();}
 					return;
 				}
 				// console.debug("Parsed: "+resarray);
@@ -151,7 +171,7 @@ function ExecQuery(sqlstr,resulte,rawr){
 							pres+="<tr>";
 							var row = table[j];
 							for (var key in row) {
-								pres+="<td>"+row[key]+"</td>";
+								pres+="<td>"+row[key].replace(/\n/g,"<br>")+"</td>";
 							}
 							pres+="</tr>";
 						}
@@ -161,8 +181,7 @@ function ExecQuery(sqlstr,resulte,rawr){
 				}
 
 				resulte.innerHTML=pres;
-
-				InstantiateCard();
+				if (instantiateCard) {InstantiateCard();}
 			}
 		};
 		xmlhttp.open("GET", "php/101.php?q="+sqlstr.toString(), true);
@@ -190,8 +209,7 @@ function AutocompletChanged(){
 }
 function GetTableHint(){
 	if(document.getElementById("tableHint").checked){
-		var xmlhttp2 = new XMLHttpRequest();
-		xmlhttp2.onreadystatechange = function() {
+		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				// console.debug(this.responseText);
 
@@ -201,8 +219,8 @@ function GetTableHint(){
 				window.editor.setOption("hintOptions",defaults["hintOptions"]);
 			}
 		};
-		xmlhttp2.open("GET", "php/103.php"+(document.getElementById("procHint").checked ? "?proc" : ""), true);
-		xmlhttp2.send();
+		xmlhttp.open("GET", "php/103.php"+(document.getElementById("procHint").checked ? "?proc" : ""), true);
+		xmlhttp.send();
 	}else{
 		if(defaults["hintOptions"]["tables"]!==[]){
 			defaults["hintOptions"]["tables"]=[];
@@ -211,8 +229,9 @@ function GetTableHint(){
 	}
 }
 function GetSnippets(){
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
+	// Need it's own XMLHttpRequest
+	var xmlhttp2 = new XMLHttpRequest();
+	xmlhttp2.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var res=this.responseText;
 			res=res.split("\n");
@@ -249,13 +268,35 @@ function GetSnippets(){
 				snippetsHTML+='<option value="'+i.toString()+'">'+snippets[i][0]+"</option>";
 			}
 			if(groupclosing){snippetsHTML+="<br/></optgroup><br/>";}
-			snippetsHTML+='<option class="separator" disabled="true"></option>';
 		}
 	};
-	xmlhttp.open("GET", "snippets.txt", true);
-	xmlhttp.send();
+	xmlhttp2.open("GET", "snippets.txt", true);
+	xmlhttp2.send();
 }
 
+function adbchange(dbname){
+	dbname=dbname.toString();
+
+	var aloader = document.createElement("div");
+	aloader.className="aloader";
+	document.getElementById("_dbname").parentNode.insertBefore(aloader, document.getElementById("_dbname"));
+
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var pre = this.responseText.toString();
+			aloader.remove();
+
+			if(pre == "1"){
+				GetTableHint();
+			}else{
+				alert("Database "+dbname+" does not exists.\n\nUse: SHOW DATABASES");
+				document.getElementById("_dbname").value = pre;
+			}
+		}
+	};
+	xmlhttp.open("GET", "php/106.php?db="+dbname, true);
+	xmlhttp.send();
+}
 
 function localset(ind,val){
 	localStorage.setItem("phpmiami/"+ind.toString(),val.toString());
@@ -289,7 +330,7 @@ function escapeHtml(text) {
 		"`": '&#768;'
 	};
 
-	return text.toString().replace(/[&<>"']/g, function(m) { return map[m]; });
+	return text.toString().replace(/[&<>"'`]/g, function(m) { return map[m]; });
 }
 function copyTextToClipboard(text) {
 	if (!navigator.clipboard) {
@@ -338,7 +379,12 @@ function DownloadText(filename, textarea, charset){
 	document.body.removeChild(element);
 }
 
-function ShowHideStylesPanel(){
-	document.getElementById("styles_panel").style.width = (document.getElementById("styles_panel").style.width=="0vw" ? "50vw":"0vw");
-	document.getElementById("styles_panel").style.opacity = (document.getElementById("styles_panel").style.opacity==0 ? 1:0);
+function ShowHideStylesPanel(visible){
+	if(visible===undefined){
+		document.getElementById("styles_panel").style.width = (document.getElementById("styles_panel").style.width=="0vw" ? "max(50vw,512px)":"0vw");
+		document.getElementById("styles_panel").style.opacity = (document.getElementById("styles_panel").style.opacity==0 ? 1:0);
+	}else{
+		document.getElementById("styles_panel").style.width = (visible ? "max(50vw,512px)":"0vw");
+		document.getElementById("styles_panel").style.opacity = (visible ? 1:0);
+	}
 }

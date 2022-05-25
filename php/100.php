@@ -10,7 +10,7 @@
     <style>
 		body{padding:32px;}
     </style>
-	
+
 	<script src="../theme.js" charset="utf-8"></script>
   </head>
   <body onload="LoadStyles()">
@@ -30,7 +30,7 @@
   $hn=$h;
 
   if(!$_CONFIG["allow_localhost"]){
-    if($h=="localhost" || $h=="127.0.0.1" || $h=="::1"){die("For security reasons, conections to 'localhost' are bloqued. Learn more about localhost <a href=\"../doc/localhost.html\">here</a>.<br><br><a href='../login'>Return</a>");}
+    if($h=="localhost" || $h=="127.0.0.1" || $h=="::1"){die("For security reasons, conections to 'localhost' are bloqued. Learn more about localhost <a href=\"../doc/localhost.html\">here</a>.<br><br><a href='../login'>Return</a></body></html>");}
   }
   $u=$_REQUEST["u"];
 
@@ -50,6 +50,3 @@
   //header('Location: ../main'); // This won't work on some servers
   die('<meta http-equiv="refresh" content="0; URL=../main">');
 ?>
-
-  </body>
-</html>
