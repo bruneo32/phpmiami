@@ -171,6 +171,10 @@ function ExecQuery(sqlstr,resulte,rawr,instantiateCard = true){
 							pres+="<tr>";
 							var row = table[j];
 							for (var key in row) {
+								if  (key[row] == null){
+									pres += "<td><i>null</i></td>"
+									continue;
+								}
 								pres+="<td>"+row[key].replace(/\n/g,"<br>")+"</td>";
 							}
 							pres+="</tr>";
